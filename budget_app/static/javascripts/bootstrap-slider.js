@@ -1019,14 +1019,16 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
 						/* Set class labels to denote whether ticks are in the selection */
 						this._removeClass(this.ticks[i], 'in-selection');
-						if (!this.options.range) {
-							if (this.options.selection === 'after' && percentage >= positionPercentages[0]) {
-								this._addClass(this.ticks[i], 'in-selection');
-							} else if (this.options.selection === 'before' && percentage <= positionPercentages[0]) {
+						if (!document.title.includes('Pagos a terceros') && !document.URL.includes('objetivos')) {
+							if (!this.options.range) {
+								if (this.options.selection === 'after' && percentage >= positionPercentages[0]) {
+									this._addClass(this.ticks[i], 'in-selection');
+								} else if (this.options.selection === 'before' && percentage <= positionPercentages[0]) {
+									this._addClass(this.ticks[i], 'in-selection');
+								}
+							} else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
 								this._addClass(this.ticks[i], 'in-selection');
 							}
-						} else if (percentage >= positionPercentages[0] && percentage <= positionPercentages[1]) {
-							this._addClass(this.ticks[i], 'in-selection');
 						}
 
 						if (this.tickLabels[i]) {
@@ -1110,7 +1112,11 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 					this.trackLow.style.width = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
 
 					this.trackSelection.style.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
-					this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+					if (document.title.includes('Pagos a terceros') || document.URL.includes('objetivos')) {
+						this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[0]) + '%';
+					} else {
+						this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
+					}
 
 					this.trackHigh.style.right = '0';
 					this.trackHigh.style.width = 100 - Math.min(positionPercentages[0], positionPercentages[1]) - Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
