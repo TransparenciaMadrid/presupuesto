@@ -451,6 +451,9 @@
         ticks: years.map(function(d){ return parseInt(d); }),
         ticks_labels: years
       });
+      $('#input-date').on('slideStop', function() {
+        $('#payments-search').find('button[type="submit"]').click();
+      });
     } else {
       $('#input-date').slider({
         value: {{last_year}},
@@ -458,6 +461,9 @@
         ticks: years.map(function(d){ return parseInt(d); }),
         ticks_labels: years
       });
+      $('#input-date').on('slideStop', function() {
+        $('#payments-search').find('button[type="submit"]').click();
+    });
     }
 
     // Hide year slider if there's only one year
