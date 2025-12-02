@@ -1019,7 +1019,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
 						/* Set class labels to denote whether ticks are in the selection */
 						this._removeClass(this.ticks[i], 'in-selection');
-						if (!document.title.includes('Pagos a terceros') && !document.URL.includes('objetivos') && !document.URL.includes('politicas')) {
+						if (!document.title.includes('Pagos a terceros') && !document.URL.includes('objetivos') && !document.URL.includes('politicas') && !document.title.includes('Inversiones por distritos')) {
 							if (!this.options.range) {
 								if (this.options.selection === 'after' && percentage >= positionPercentages[0]) {
 									this._addClass(this.ticks[i], 'in-selection');
@@ -1112,7 +1112,7 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 					this.trackLow.style.width = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
 
 					this.trackSelection.style.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
-					if (document.title.includes('Pagos a terceros') || document.URL.includes('objetivos') || document.URL.includes('politicas')) {
+					if (document.title.includes('Pagos a terceros') || document.URL.includes('objetivos') || document.URL.includes('politicas') || (document.URL.includes('inversiones') && !document.URL.includes('inversiones-principales'))) {
 						this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[0]) + '%';
 					} else {
 						this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
