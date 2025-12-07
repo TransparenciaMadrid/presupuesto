@@ -967,7 +967,15 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 			},
 			_layout: function _layout() {
 				var positionPercentages;
-
+                var is_pagos_a_terceros          =  document.title.includes('Pagos a terceros') ;
+                var is_objetivos                 =  document.URL.includes('objetivos');
+                var is_apartado_objetivos        =  document.URL.includes('politicas');
+                var is_inversiones_por_distritos =  document.title.includes('Inversiones por distritos');
+                var is_inversiones               =  document.URL.includes('inversiones');
+                var is_inversiones_principales   =  document.URL.includes('inversiones-principales');
+                var is_vision_global             =  document.URL.includes('resumen');
+                var is_vision_global_articulos   =  document.URL.includes('articulos');
+                var is_objetivos_programas   =  document.URL.includes('programas');
 				if (this.options.reversed) {
 					positionPercentages = [100 - this._state.percentage[0], this.options.range ? 100 - this._state.percentage[1] : this._state.percentage[1]];
 				} else {
@@ -1019,7 +1027,17 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 
 						/* Set class labels to denote whether ticks are in the selection */
 						this._removeClass(this.ticks[i], 'in-selection');
-						if (!document.title.includes('Pagos a terceros') && !document.URL.includes('objetivos') && !document.URL.includes('politicas') && !document.title.includes('Inversiones por distritos')) {
+						if ((!is_pagos_a_terceros &&
+						    !is_objetivos &&
+						    !is_apartado_objetivos &&
+						    !is_inversiones_por_distritos &&
+						    !is_inversiones &&
+						    !is_vision_global &&
+						    !is_vision_global_articulos &&
+						    !is_objetivos_programas) ||
+							is_inversiones_principales
+						   )
+							{
 							if (!this.options.range) {
 								if (this.options.selection === 'after' && percentage >= positionPercentages[0]) {
 									this._addClass(this.ticks[i], 'in-selection');
@@ -1112,7 +1130,13 @@ function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.const
 					this.trackLow.style.width = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
 
 					this.trackSelection.style.left = Math.min(positionPercentages[0], positionPercentages[1]) + '%';
-					if (document.title.includes('Pagos a terceros') || document.URL.includes('objetivos') || document.URL.includes('politicas') || (document.URL.includes('inversiones') && !document.URL.includes('inversiones-principales'))) {
+					if (is_pagos_a_terceros || 
+						is_objetivos || 
+						is_apartado_objetivos || 
+						(is_inversiones && !is_inversiones_principales) ||
+					    is_vision_global ||
+					    is_vision_global_articulos ||
+						is_objetivos_programas) {
 						this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[0]) + '%';
 					} else {
 						this.trackSelection.style.width = Math.abs(positionPercentages[0] - positionPercentages[1]) + '%';
